@@ -82,7 +82,6 @@ filetype plugin indent on
 syntax on
 
 "set pretty linenumbers
-set relativenumber
 set number
 
 "auto reload a file when it is modified
@@ -90,6 +89,7 @@ set autoread
 
 "set scroll offset
 set scrolloff=5
+autocmd BufWinEnter * if &buftype == 'quickfix' | setlocal so=0 | endif
 
 "enable wildmenu
 set wildmenu
@@ -173,6 +173,11 @@ nmap <leader>h *N
 " close quick fix and preview
 nmap <leader>cc :cclose<bar>pc<CR>
 
+nmap ]q :cn<CR>
+nmap [q :cp<CR>
+nmap ]Q :clast<CR>
+nmap [Q :cfirst<CR>
+
 " |                                |
 " v plugin specific settings below v
 
@@ -254,5 +259,5 @@ nmap <leader>N :NERDTreeToggle<CR><C-W>p
 " Ack/ag
 "==================================================
 let g:ackprg = 'ag --nogroup --nocolor --column'
-nmap <leader>a :Ack! --ignore-dir=.ccls-cache -w -G'\.(cpp<bar>h<bar>cmake)$' <C-R>=expand("<cword>")<CR><CR>
-nmap <leader>A :Ack! --ignore-dir=.ccls-cache -S -G'\.(cpp<bar>h<bar>cmake)$' ''<left>
+nmap <leader>a :Ack! --ignore-dir=.ccls-cache -w -U -G'\.(cpp<bar>h<bar>cmake)$' <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>A :Ack! --ignore-dir=.ccls-cache -S -U -G'\.(cpp<bar>h<bar>cmake)$' ''<left>
